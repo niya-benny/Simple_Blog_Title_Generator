@@ -78,14 +78,15 @@ def generate_blog_titles(content, num_titles=5):
     # Limit input length (important!)
     # The model 'czearing/article-title-generator' is a T5 model, which has a max input of 512 or 1024 tokens.
     # Limiting the content size is essential.
-    content = content[:1000]
+    content = content[:500]
+
 
     titles = generator(
         content,
-        max_length=20,
-        num_return_sequences=num_titles,
-        do_sample=True,
-        temperature=0.9
+        # max_length=20,
+        num_beams=5,
+        num_return_sequences=5,
+        early_stopping=True
     )
 
     return [t["generated_text"] for t in titles]
