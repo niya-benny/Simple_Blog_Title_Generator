@@ -56,15 +56,20 @@ My blog post is about the following content:
     # LLMs handle larger contexts, but we limit for speed and cost.
     MAX_LLM_INPUT_LENGTH: int = 8000 
 
-    def __init__(self, provider: LLMProvider = LLMProvider.OPENAI, model_name: str = "gpt-4o"):
-        """Initializes the processor and the LLM instance."""
-        if LLM is None:
-            raise RuntimeError("SimplerLLM must be installed and configured with API keys.")
-            
+    def __init__(self, provider=None, model_name: str = "gpt-4o"):
+        if LLM is None or LLMProvider is None:
+            raise RuntimeError(
+                "SimplerLLM is not installed. Install it and configure your API key."
+            )
+    
+        if provider is None:
+            provider = LLMProvider.OPENAI
+    
         print(f"🧠 Initializing LLM: {model_name} from {provider.name}...")
         self.llm_instance = LLM.create(provider=provider, model_name=model_name)
         self.session = self._setup_retry_session()
         print("✅ LLM and Session initialized.")
+
 
     # --- Web Scraping Methods (Copied for robustness and universality) ---
 
