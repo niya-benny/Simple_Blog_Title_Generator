@@ -180,3 +180,102 @@
    74  git pull origin main --rebase
    75  git status
    76  history >> history.txt
+    1  git clone https://github.com/niya-benny/Simple_Blog_Title_Generator.git
+    2  cd Simple_Blog_Title_Generator
+    3  git status
+    4  git add app.py
+    5  touch app.py
+    6  git status
+    7  git add .
+    8  git status
+    9  git commit -m "create app.py"
+   10  git log
+   11  git config --global user.name "niya-benny"
+   12  git config --global user.email "niyabenny2004@gmail.com"
+   13  git log
+   14  git push origin main
+   15  git push origin main
+   16  git push origin main
+   17  git push origin main
+   18  git status
+   19  cd ~
+   20  cd GitProject/Simple_Blog_Title_Generator
+   21  cd GitProjects/Simple_Blog_Title_Generator
+   22  git status
+   23  git status
+   24  git add .
+   25  git commit -m "add code"
+   26  git status
+   27  git add .
+   28  git commit -m "updation in code1"
+   29  git status
+   30  git push origin main
+   31  git add .
+   32  git commit -m "add file history.txt"
+   33  doskey /history >> history.txt
+   34  git push origin main
+   35  git pull origin main --rebase
+   36  git status
+   37  git add .
+   38  git commit -m "modify history.txt"
+   39  git pull origin main --rebase
+   40  git push origin main
+   41  history >> history.txt
+   42  fit status
+   43  git status
+   44  git add .
+   45  git add .
+   46  git commit -m "modify history.txt"
+   47  git push origin main
+   48  git pull origin main --rebase
+   49  git status
+   50  cd ~
+   51  cd Users\lenovo\GitProjects\Simple_Blog_Title_Generator
+   52  cd lenovo\GitProjects\Simple_Blog_Title_Generator
+   53  cd GitProjects\Simple_Blog_Title_Generator
+   54  cd GitProjects
+   55  cd Simple_Blog_Title_Generator
+   56  git status
+   57  git add .
+   58  git commit -m "changes in code to improve the performance"
+   59  git push origin main
+   60  git status
+   61  git status
+   62  git pull origin main --rebase
+   63  git status
+   64  history >> history.txt
+   65  cd ~
+   66  cd GitProjects
+   67  cd SimpleTitleGenerator
+   68  cd BlogTitleGenerator
+   69  cd Simple_Blog_Title_Generator
+   70  git status
+   71  git add .
+   72  git commit -m "update history.txt"
+   73  git push origin main
+   74  git pull origin main --rebase
+   75  git status
+   76  history >> history.txt
+   77  git add .
+   78  git commit -m "update history.txt"
+   79  git status
+   80  cd C:\Users\lenovo\GitProjects\Simple_Blog_Title_Generator
+   81  cd ~
+   82  cd GitProjects\Simple_Blog_Title_Generator
+   83  cd Users
+   84  cd GitProjects
+   85  cd Simple_Blog_Title_Generator
+   86  git status
+   87  git status
+   88  git add .
+   89  git commit -m "use grok"
+   90  git push origin main
+   91  git reset --soft HEAD~1
+   92  echo ".env" >> .gitignore
+   93  git add .
+   94  git commit -m "use grok"
+   95  git push origin main
+   96  git status
+   97  git pull origin main --rebase
+   98  git status
+   99  history >> history.txt
