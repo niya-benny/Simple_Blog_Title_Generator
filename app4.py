@@ -58,7 +58,7 @@ My blog post is about:
         os.environ["OPENAI_API_KEY"] = groq_api_key
         os.environ["OPENAI_BASE_URL"] = "https://api.groq.com/openai/v1"
 
-        print(f"🧠 Initializing Groq Engine: {model_name}...")
+        print(f"Initializing Groq Engine: {model_name}...")
 
         # Now LLM.create will use the environment variables we just set
         self.llm_instance = LLM.create(
@@ -67,7 +67,7 @@ My blog post is about:
         )
 
         self.session = self._setup_retry_session()
-        print("✅ Groq Session initialized.")
+        print("Groq Session initialized.")
 
     def _setup_retry_session(self) -> requests.Session:
         session = requests.Session()
@@ -78,7 +78,7 @@ My blog post is about:
         return session
 
     def _extract_text_from_url(self, url: str) -> str:
-        print(f"🔍 Fetching content from: {url}")
+        print(f"Fetching content from: {url}")
         try:
             response = self.session.get(url, headers=self.DEFAULT_HEADERS, timeout=self.DEFAULT_TIMEOUT)
             response.raise_for_status()
@@ -97,7 +97,7 @@ My blog post is about:
         if len(text) < self.MIN_CONTENT_LENGTH:
             raise ValueError("Extracted content is too short.")
 
-        print(f"✅ Extracted {len(text)} characters.")
+        print(f"Extracted {len(text)} characters.")
         return text
 
     def generate_titles_from_url(self, url: str, num_titles: int = 10) -> str:
@@ -108,11 +108,12 @@ My blog post is about:
         print(f"✍️ Sending to Groq...")
         return self.llm_instance.generate_response(prompt=final_prompt)
 
+# Load variables from .env
+load_dotenv()
 
 # --- EXECUTION ---
 if __name__ == "__main__":
-    # Load variables from .env
-    load_dotenv()
+    
 
     # 1. GET YOUR FREE KEY: https://console.groq.com/keys
     GROQ_API_KEY = os.getenv("GROQ_API_KEY")
@@ -120,11 +121,11 @@ if __name__ == "__main__":
     blog_url = "https://datasciencedojo.com/blog/from-llms-to-slms-in-agentic-ai/"
 
     if not GROQ_API_KEY:
-        print("❌ Error: GROQ_API_KEY not found in .env file")
+        print("Error: GROQ_API_KEY not found in .env file")
     else:
         try:
             generator = AITitleGenerator(groq_api_key=GROQ_API_KEY)
             titles = generator.generate_titles_from_url(url=blog_url, num_titles=10)
             print("\n🏆 Generated Titles:\n", titles)
         except Exception as e:
-            print(f"\n❌ Error: {e}")
+            print(f"\nError: {e}")
