@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Title Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center py-12">
+
+    <div class="w-full max-w-2xl bg-white shadow-md rounded-lg p-8">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">AI SEO Title Generator</h1>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Blog URL</label>
+                <input type="url" id="blogUrl" placeholder="https://example.com/blog-post" 
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Number of Titles</label>
+                <input type="number" id="numTitles" value="5" min="1" max="15" 
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+            </div>
+
+            <button onclick="generateTitles()" id="submitBtn"
+                class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">
+                Generate Titles
+            </button>
+        </div>
+
+        <div id="loading" class="hidden mt-6 text-center text-blue-600 animate-pulse">
+            Extracting content and thinking...
+        </div>
+
+        <div id="resultContainer" class="hidden mt-8">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Suggested Titles:</h2>
+            <ul id="titlesList" class="space-y-3 list-disc pl-5 text-gray-700"></ul>
+        </div>
+    </div>
+
+    <script>
+        async function generateTitles() {
+            const url = document.getElementById('blogUrl').value;
+            const num = document.getElementById('numTitles').value;
+            const btn = document.getElementById('submitBtn');
+            const loader = document.getElementById('loading');
+            const resultBox = document.getElementById('resultContainer');
+            const list = document.getElementById('titlesList');
+
+            if (!url) return alert("Please enter a URL");
+
+            // UI State
+            btn.disabled = true;
+            loader.classList.remove('hidden');
+            resultBox.classList.add('hidden');
+            list.innerHTML = '';
+
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ url: url, num_titles: num })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    alert("Error: " + data.error);
+                } else {
+                    data.titles.forEach(title => {
+                        const li = document.createElement('li');
+                        li.textContent = title;
+                        list.appendChild(li);
+                    });
+                    resultBox.classList.remove('hidden');
+                }
+            } catch (err) {
+                alert("Request failed");
+            } finally {
+                btn.disabled = false;
+                loader.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
